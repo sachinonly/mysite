@@ -1,0 +1,8 @@
+fruits,price,Color,Season,Quantity,OrderType
+Mangoes,10,Yellow,Summer,per kg,Buy in
+Apple,20,Red,Any,per peice,Online
+Banana,30,Yellow,Any, Dozen,Buy in
+Orange,40,Orange,Any,per peice,Online
+Guava,50, Green,Summer,per piece,Buy in
+Watermelon,60, Green,Summer,per piece,Buy in
+Strawberry,70,Red, Autmn,per kg,Online
