@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Please rate your service</title>
+</head>
+<body>
+<div class="container">
+    <img src="../static/blood-donation-logo.png" alt="BloodDonationBank" class="logo" />
+    {% if message %}
+    <p class="message">{{ message | safe }}</p>
+    {% endif %}
+    <form action="/submit" method="POST">
+        <div class="form-group">
+            <h3>DonorName</h3>
+            <input
+                    type="text"
+                    name="DonorName"
+                    placeholder="Enter your Name"
+            />
+        </div>
+        <div class="form-group">
+            <h3>Bloodgroup</h3>
+            <select name="Bloodgroup">
+                <option value="">Select Bloodgroup</option>
+                <option value="A+">A Positive</option>
+                <option value="B+">B Positive</option>
+                <option value="A-">A Negative</option>
+                <option value="B-">B Negative</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <h3>MobileContact</h3>
+            <input
+                    type="text"
+                    name="MobileContact"
+                    placeholder="Enter your Mobile Number or Any Contact"
+            />
+        </div>
+        <div class="form-group">
+            <h3>Please select City</h3>
+            <input type="radio" name="City" value="Delhi" /> Delhi
+            <input type="radio" name="City" value="Mumbai" /> Mumbai
+            <input type="radio" name="City" value="Bangalore" /> Bangalore
+            <input type="radio" name="City" value="Hyderabad" /> Hyderabad
+            <input type="radio" name="City" value="Chennai" /> Chennai
+            <input type="radio" name="City" value="Kolkata" /> Kolkata
+            <input type="radio" name="City" value="Jaipur" /> Jaipur
+            <input type="radio" name="City" value="Lucknow" /> Lucknow
+            <input type="radio" name="City" value="Bhopal" /> Bhopal
+            <input type="radio" name="City" value="Patna"  /> Patna
+            <input type="radio" name="City" value="Amravati" checked /> Amravati
+        </div>
+        <div class="form-group">
+            <h3>Comments about your health condition and availability </h3>
+            <textarea
+                    name="Comments"
+                    id=""
+                    cols="50"
+                    rows="5"
+                    placeholder="Tell us more about you "
+            ></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn" />
+    </form>
+</div>
+
+<div class="footer">
+    <p>Footer</p>
+</div>
+</body>
+</html>

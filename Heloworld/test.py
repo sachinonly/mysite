@@ -1,3 +1,5 @@
+import pymysql
+pymysql.install_as_MySQLdb()
 def divcheck(a,b):
     try:
         return a/b
