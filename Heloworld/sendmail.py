@@ -20,4 +20,4 @@ def send_mail(DonorName,Bloodgroup,MobileContact,City,Comments):
         server.login(login, password)
         server.sendmail(sender_email, receiver_email, msg.as_string())
 #send_mail('customer','dealer','ratings','comments')
-print("Mail Sent ")
+#print("Mail Sent ")
