@@ -11,7 +11,7 @@ cnn = snowflake.connector.connect(
     account='za80685.ap-south-1.aws',
     database='MYDB_PRACTICE',
     schema='MYDB_PRACTICE_SCHEMA'
-    )
+)
 
 
 print("Connecting to snowflake ..")
@@ -24,7 +24,7 @@ sql = ("insert into PYTHON_SNOWFLAKE_TBL "
        "SNOWFLAKEACCOUNT,"
        "SNOWFLAKEDB)"
        " values (?,?,?,?,?,?,?);")
-params = [['PythonIntelligJ','PythonSrc','SnowflakeTGT',
+params = [['PythonIntelligJ','PythonSrc2','SnowflakeTGT2',
            'snowflake-connector-python  and import snowflake.connector',
            'Heloworld',
            'za80685.ap-south-1.aws',
