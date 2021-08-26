@@ -37,7 +37,7 @@ or watch (time 42:00)  ---> youtube video https://www.youtube.com/watch?v=w25ea_
 2) heroku config --app blooddonators
 
 	=== blooddonators Config Vars
-	DATABASE_URL: postgres://hgepitlffbzvrc:d34612a0f1ead3be4deecaa65dbf9b354e32a9b7950c947446f13616ed296961@ec2-54-196-65-186.compute-1.amazonaws.com:5432/d7pfkbgf7i7e1u
+	DATABASE_URL: postgresql://uyjudlltvcnbtw:d48e39a51a92d29c471d836a28ea1965817b6a8c61c8adab10f643259912e157@ec2-44-197-40-76.compute-1.amazonaws.com:5432/d1p9tjvu7fud3p
 3) pip freeze > requirements.txt
 
 4) git add . && git commit -m "Project blooddonation : Prod , (1) cmd :heroku addons:create heroku-postgresql:hobby-dev --app blooddonators 2) cmd: heroku config --app blooddonators)"
@@ -47,7 +47,7 @@ Access the Database from heroku CLI
 ----------------------------------
 heroku run python
 from app import db
-db.create_all
+db.create_all()
 
 heroku pg:psql --app bloodonators
 

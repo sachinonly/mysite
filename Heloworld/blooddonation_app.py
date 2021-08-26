@@ -9,7 +9,7 @@ import mysql
 
 app = Flask(__name__)
 
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
@@ -30,7 +30,7 @@ class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     DonorName = db.Column(db.String(200), unique=True)
     Bloodgroup = db.Column(db.String(200), unique=True)
-    MobileContact = db.Column(db.Integer())
+    MobileContact = db.Column(db.BigInteger())
     City = db.Column(db.String(100))
     #Diabetic = db.Column(db.String(100))
     Comments = db.Column(db.Text())
