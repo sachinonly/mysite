@@ -46,11 +46,6 @@ jupyter-console==6.4.0
 jupyter-core==4.7.1
 jupyterlab-pygments==0.1.2
 jupyterlab-widgets==1.0.0
-Kivy==2.0.0
-kivy-deps.angle==0.3.0
-kivy-deps.glew==0.3.0
-kivy-deps.sdl2==0.3.1
-Kivy-Garden==0.1.4
 lockfile==0.12.2
 MarkupSafe==2.0.1
 matplotlib-inline==0.1.2
