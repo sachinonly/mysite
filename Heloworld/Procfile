@@ -1,1 +1,1 @@
-web: gunicorn bloodonation_app:app
+web: gunicorn blooddonation_app:app

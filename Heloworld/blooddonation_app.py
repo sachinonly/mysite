@@ -9,7 +9,7 @@ import mysql
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
@@ -18,7 +18,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://uyjudlltvcnbtw:d48e39a51a92d29c471d836a28ea1965817b6a8c61c8adab10f643259912e157@ec2-44-197-40-76.compute-1.amazonaws.com:5432/d1p9tjvu7fud3p'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
