@@ -4,17 +4,17 @@
 #pip install mysql-connector-python (for mysql)
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sendmail import send_mail
+#from sendmail import send_mail
 import mysql
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Mysql123#@localhost/blooddonation'
-        #'postgresql://postgres:123456@localhost/blooddonation'
+    #'postgresql://postgres:123456@localhost/blooddonation'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 else:
     app.debug = False

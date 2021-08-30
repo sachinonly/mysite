@@ -1,10 +1,10 @@
 #pip install --upgrade snowflake-sqlalchemy
-import os
+#import os
 import pandas as pd
-import sqlalchemy
+#import sqlalchemy
 import snowflake.connector
-from sqlalchemy import create_engine
-from snowflake.sqlalchemy import URL
+#from sqlalchemy import create_engine
+#from snowflake.sqlalchemy import URL
 
 def createtables():
     df1=pd.read_csv("C:\\Personals\\Learnings\\Python\\mysite\\Heloworld\\files\\fileslist.txt", sep =";")
