@@ -1,1 +1,1 @@
-web: gunicorn blooddonation_app:app
+web: gunicorn pysnowflake_app:app

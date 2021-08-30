@@ -1,0 +1,15 @@
+pip install gunicorn
+pip freeze > requirements.txt
+Create a file named "Procfile" in the main app directory.Then type in this line inside: "web: gunicorn pysnowflake_app:app" 
+Create a runtime.txt file in the main app directory and type "python-3.5.1" inside.
+heroku login
+heroku create myawesomeappname
+heroku create pysnowflake or for build errors if any   heroku create pysnowflake --buildpack heroku/python
+git init
+git add .
+git config --global user.email "ds.deshmukh@gmail.com"
+git config --global user.name "sachin"
+git commit -m "first commit"
+heroku git:remote --app pysnowflake
+git push heroku master
+heroku open
