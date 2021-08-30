@@ -1,8 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, abort, send_file
 from werkzeug.utils import secure_filename
-import cv2
-
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
@@ -29,7 +27,6 @@ def upload_files():
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
             return redirect('/downloadfile/'+ filename)
     return render_template('upload_file.html')
-
 # Download API
 @app.route("/downloadfile/<filename>", methods = ['GET'])
 def download_file(filename):
@@ -38,16 +35,7 @@ def download_file(filename):
 @app.route('/return-files/<filename>')
 def return_files_tut(filename):
     file_path = app.config['UPLOAD_PATH'] + filename
-    filewithnoextn = file_path.rsplit('.', 1)[0]
-    suffix = '.jpg'
-    convert_fileto_jpg = os.path.join(filewithnoextn + suffix)
-    print ('convert_fileto_jpg:' , convert_fileto_jpg)
-    #C:/Personals/Learnings/Python/mysite/Heloworld\uploads/DPC9_1301240005381084_25052021111421.pdfoutput.jpg
-    print('file_path: ',file_path)
-    file_path_inp = cv2.imread(file_path,1)
-
-    cv2.imwrite(convert_fileto_jpg, file_path_inp)
-    return send_file(convert_fileto_jpg, as_attachment=True, attachment_filename='')
+    return send_file(file_path, as_attachment=True, attachment_filename='')
 
 
 if __name__ == '__main__':
