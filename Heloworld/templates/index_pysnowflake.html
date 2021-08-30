@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Please rate your service</title>
+</head>
+<body>
+<div class="container">
+    <img src="../static/pysnowflake_logo.png" alt="Pysnowflake" class="logo" />
+    {% if message %}
+    <p class="message">{{ message | safe }}</p>
+    {% endif %}
+    <form action="/submit" method="POST">
+        <div class="form-group">
+            <h3>DonorName</h3>
+            <input
+                    type="text"
+                    name="user"
+                    placeholder="user"
+            />
+        </div>
+        <div class="form-group">
+            <h3>DonorName</h3>
+            <input
+                    type="text"
+                    name="password"
+                    placeholder="password"
+            />
+        </div>
+        <div class="form-group">
+            <h3>DonorName</h3>
+            <input
+                    type="text"
+                    name="account"
+                    placeholder="account"
+            />
+        </div>
+        <div class="form-group">
+            <h3>DonorName</h3>
+            <input
+                    type="text"
+                    name="database"
+                    placeholder="database"
+            />
+        </div>
+        <div class="form-group">
+            <h3>DonorName</h3>
+            <input
+                    type="text"
+                    name="schema"
+                    placeholder="schema"
+            />
+        </div>
+<input type="submit" value="Submit" class="btn" />
+</form>
+</div>
+
+<div class="footer">
+    <p>Connect to Snowflake using Python and Perform SQL's </p>
+    <p> Features : Create Tables as per table definition </p>
+    <p> PUT command supported for INTERNAL STAGE </p>
+    <p>            COPY INTO TABLE from INTERNAL STAGE STAGE</p>
+</div>
+</body>
+</html>

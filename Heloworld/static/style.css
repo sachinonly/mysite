@@ -18,7 +18,7 @@ body {
 }
 
 .container {
-	max-width: 650px;
+	max-width: 1000px;
 	margin: 1rem auto;
 	overflow: auto;
 	padding: 0 2rem;
@@ -46,7 +46,7 @@ img {
 }
 
 .logo {
-	width: 200px;
+	width: 100px;
 	height: auto;
 	display: block;
 	margin: auto;
@@ -78,7 +78,9 @@ textarea {
 	margin-top: 1rem;
 }
 .footer {
-  background-color: #777;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+  background-color:  #A0E3F6;
+  color: white;
+  font-weight:bold
   }

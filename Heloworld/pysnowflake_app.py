@@ -6,96 +6,69 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 #from sendmail import send_mail
 import mysql
+import snowflake.connector
+import pandas
 
-app = Flask(__name__)
 
-ENV = 'prod'
+pysnowflake_app = Flask(__name__)
+
+ENV = 'dev'
 
 if ENV == 'dev':
-    app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Mysql123#@localhost/blooddonation'
+    pysnowflake_app.debug = True
+    pysnowflake_app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Mysql123#@localhost/blooddonation'
     #'postgresql://postgres:123456@localhost/blooddonation'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    pysnowflake_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 else:
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://uyjudlltvcnbtw:d48e39a51a92d29c471d836a28ea1965817b6a8c61c8adab10f643259912e157@ec2-44-197-40-76.compute-1.amazonaws.com:5432/d1p9tjvu7fud3p'
+    pysnowflake_app.debug = False
+    pysnowflake_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://uyjudlltvcnbtw:d48e39a51a92d29c471d836a28ea1965817b6a8c61c8adab10f643259912e157@ec2-44-197-40-76.compute-1.amazonaws.com:5432/d1p9tjvu7fud3p'
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+pysnowflake_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(pysnowflake_app)
 
-#DonorName,Bloodgroup,Age,Diabetic,Weight,Comment,AadharID,MobileContact,Emailid,City,State,LastDonated
-class Feedback(db.Model):
-    __tablename__ = 'blood_master'
-    id = db.Column(db.Integer, primary_key=True)
-    DonorName = db.Column(db.String(200), unique=True)
-    Bloodgroup = db.Column(db.String(200), unique=True)
-    MobileContact = db.Column(db.BigInteger())
-    City = db.Column(db.String(100))
-    #Diabetic = db.Column(db.String(100))
-    Comments = db.Column(db.Text())
-    # Age = db.Column(db.Integer)
-    #
-    # Weight = db.Column(db.Integer)
-    # Comment = db.Column(db.Text())
-    # AadharID = db.Column(db.Integer())
-    # MobileContact = db.Column(db.Integer())
-    # Emailid = db.Column(db.Integer())
-    # City = db.Column(db.String(100))
-    # State = db.Column(db.String(20))
-    # LastDonated = db.Column(db.String())
+def __init__(self,user,password,account,City,Comments):
+        self.user = user
+        self.password = password
+        self.account = account
 
-    #def __init__(self, id,DonorName,Bloodgroup,Age,Diabetic,Weight,Comment,AadharID,MobileContact,Emailid,City,State,LastDonated):
-    #def __init__(self,DonorName,Bloodgroup,MobileContact,City,Diabetic,Comments):
-    def __init__(self,DonorName,Bloodgroup,MobileContact,City,Comments):
-        self.DonorName = DonorName
-        self.Bloodgroup = Bloodgroup
-        self.MobileContact = MobileContact
-        self.City = City
-        #self.Diabetic = Diabetic
-        self.Comments = Comments
-        # self.Age = Age
-        #
-        # self.Weight = Weight
-        # self.AadharID = AadharID
-        # self.Emailid = Emailid
-        # self.State = State
-        # self.LastDonated = LastDonated
 
-@app.route('/')
+@pysnowflake_app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_pysnowflake.html')
 
 
-@app.route('/submit', methods=['POST'])
+@pysnowflake_app.route('/submit', methods=['POST'])
 def submit():
     if request.method == 'POST':
-        DonorName = request.form['DonorName']
-        Bloodgroup = request.form['Bloodgroup']
-        MobileContact = request.form['MobileContact']
-        City = request.form['City']
-        #Diabetic = request.form['Diabetic']
-        Comments = request.form['Comments']
-        # Age = request.form['Age']
-        # Weight = request.form['Weight']
-        # AadharID = request.form['AadharID']
-        # Emailid = request.form['Emailid']
-        # State = request.form['State']
-        # LastDonated = request.form['LastDonated']
-        # print(customer, dealer, rating, comments)
-        if DonorName == '' or Bloodgroup == '' or MobileContact == '' :
-            return render_template('index.html', message='Please enter required fields')
-        if db.session.query(Feedback).filter(Feedback.DonorName == DonorName).count() == 0:
-            #data = Feedback(DonorName,Bloodgroup,Age,Diabetic,Weight,Comment,AadharID,MobileContact,Emailid,City,State,LastDonated)
-            #data = Feedback(DonorName,Bloodgroup,MobileContact,City,Diabetic,Comments)
-            data = Feedback(DonorName,Bloodgroup,MobileContact,City,Comments)
-            db.session.add(data)
-            db.session.commit()
-            #send_mail(DonorName,Bloodgroup,MobileContact,City,Diabetic,Comments)
-            #send_mail(DonorName,Bloodgroup,MobileContact,City,Comments)
-            return render_template('success.html')
-        return render_template('index.html', message='Thanks , You have already submitted blood details . Have a nice day ')
+        user = request.form['user']
+        password = request.form['password']
+        account = request.form['account']
+        database = request.form['database']
+        schema = request.form['schema']
+        print("Checking the parameters for  Connecting to snowflake ..")
+        if user == '' or password == '' or account == ''   or database == ''  or schema == '' :
+            print("Connecting to snowflake ..")
+        else :
+            print("Connecting to snowflake .., user:",user, " account: ", account , "database: ", database, " schema: ",schema)
+            cnn1 = snowflake.connector.connect(
+                 user=user,
+                 password=password,
+                 account=account,
+                 database=database,
+                 schema=schema
+                 )
+            cs = cnn1.cursor()
+            print("Connected to snowflake ..")
+            print ('Executing ...')
+            df1=pandas.read_csv("C:\\Personals\\Learnings\\Python\\mysite\\Heloworld\\files\\supermarkets\\testdata.csv")
+            for i,columns in   df1.iterrows():
+                print(i,columns[0],columns[1])
+                cs.execute("INSERT INTO testdata VALUES (%s, %s, %s)", (columns[0], columns[1], columns[2]))
+            cnn1.close()
+            return render_template('success_pysnowflake.html', my_string="https://" + account+'.snowflakecomputing.com', my_list=["USER: "+ user, "ACCOUNT: "+ account, "DATABASE: "+ database,"SCHEMA: "+ schema])
+        #return render_template('index_pysnowflake.html', message='Error .. check input, Try again ',)
 
 
 if __name__ == '__main__':
-    app.run()
+    pysnowflake_app.run()

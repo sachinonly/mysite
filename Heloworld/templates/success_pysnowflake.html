@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Thank You!</title>
+</head>
+<body>
+<div class="container">
+    <img src="../static/pysnowflake_logo.png" alt="" class="logo" align="right" />
+    <div class="container">
+        <p> SNOWFLAKE URL : <a href="{{my_string}}" >{{my_string}}</a></p>
+        <br><br>
+        <p>Below are Connection Parameters and Values below , Password is not stored :</p>
+        <ul>
+            {% for n in my_list %}
+            <li>{{n}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>
